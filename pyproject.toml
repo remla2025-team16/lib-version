@@ -3,6 +3,8 @@ requires = ["setuptools>=42", "wheel", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
+name = "lib-version"
+dynamic = ["version"]
 dependencies = [
     "gitpython==3.1.32"
 ]
