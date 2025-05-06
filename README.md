@@ -11,7 +11,7 @@ A version-aware utility library used by the `app` to log or display component ve
 #### **Installation**
 
 ```python
-pip install git+https://github.com/remla25-team16/lib-version@v1.0.0
+pip install git+https://github.com/remla2025-team16/lib-version@v1.0.0
 ```
 
 #### **Usage**
