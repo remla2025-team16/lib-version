@@ -1,7 +1,7 @@
 # lib-version
 
 **Overview**
-A version-aware utility library used by the `app` to log or display component versions.
+A version-aware utility library used by the `app` to log or display component versions. The personal contribution can be seen from `ACTIVITY.md`.  
 
 #### **Features**
 
