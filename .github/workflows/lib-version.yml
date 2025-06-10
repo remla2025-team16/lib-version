@@ -16,11 +16,12 @@ jobs:
       
       - name: Extract version from Git tag
         run: |
-          VERSION="${GITHUB_REF#refs/tags/v}"
+          VERSION="${GITHUB_REF_NAME#v}"
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
       
       - name: Write version.py for VersionUtil
         run: |
+          echo "DEBUG: VERSION is '${VERSION}'"
           mkdir -p lib_version
           printf '__version__ = "%s"\n' "$VERSION" > lib_version/version.py
 
@@ -34,8 +35,9 @@ jobs:
           pip install build wheel twine setuptools_scm
 
       - name: Build package
+        env:
+          SETUPTOOLS_SCM_PRETEND_VERSION: ${{ env.VERSION }}
         run: |
-          export SETUPTOOLS_SCM_PRETEND_VERSION=$VERSION
           python -m build
       
       - name: List dist for debugging
