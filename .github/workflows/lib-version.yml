@@ -22,9 +22,7 @@ jobs:
       - name: Write version.py for VersionUtil
         run: |
           mkdir -p lib_version
-          cat > lib_version/version.py <<EOF
-          __version__ = "${VERSION}"
-          EOF
+          printf '__version__ = "%s"\n' "$VERSION" > lib_version/version.py
 
       - uses: actions/setup-python@v4
         with:
@@ -36,7 +34,9 @@ jobs:
           pip install build wheel twine setuptools_scm
 
       - name: Build package
-        run: python -m build
+        run: |
+          export SETUPTOOLS_SCM_PRETEND_VERSION=$VERSION
+          python -m build
       
       - name: List dist for debugging
         run: ls -l dist
