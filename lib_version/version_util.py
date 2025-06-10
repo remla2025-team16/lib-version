@@ -1,10 +1,11 @@
 # lib-version/version_util.py
-import pkg_resources
+import importlib
 
 class VersionUtil:
     @staticmethod
-    def get_version(package_name: str = "lib-version") -> str:
-        return pkg_resources.get_distribution(package_name).version
+    def get_version() -> str:
+        m = importlib.import_module("lib_version.version")
+        return getattr(m, "__version__", "0.0.0")
 
 # Example usage:
 if __name__ == "__main__":

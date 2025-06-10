@@ -11,6 +11,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all history for tags
+      
+      - name: Extract version from Git tag
+        run: |
+          VERSION="${GITHUB_REF#refs/tags/v}"
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+      
+      - name: Write version.py for VersionUtil
+        run: |
+          mkdir -p lib_version
+          cat > lib_version/version.py <<EOF
+          __version__ = "${VERSION}"
+          EOF
 
       - uses: actions/setup-python@v4
         with:
