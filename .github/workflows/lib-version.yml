@@ -38,11 +38,11 @@ jobs:
       - name: Build package
         run: python -m build
 
-      - name: Publish
-        run: |
-          twine upload \
-            --repository-url https://upload.pkg.github.com/${{ github.repository_owner }}/lib-version \
-            dist/*
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
+          tag_name: '${{ github.ref_name }}'
         env:
-          TWINE_USERNAME: ${{ github.actor }}
-          TWINE_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
