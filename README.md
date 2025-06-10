@@ -11,12 +11,12 @@ A version-aware utility library used by the `app` to log or display component ve
 #### **Installation**
 
 ```python
-pip install git+https://github.com/remla2025-team16/lib-version@v1.0.0
+pip install git+https://github.com/remla2025-team16/lib-version@v0.0.8
 ```
 
 #### **Usage**
 
 ```python
 from lib_version.version_util import VersionUtil
-print(VersionUtil.get_version())  # Output: "1.0.0"
+print(VersionUtil.get_version())
 ```
